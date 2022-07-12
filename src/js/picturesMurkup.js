@@ -1,4 +1,5 @@
 export function picturesMurkup(hits) {
+  console.log(hits);
   return hits
     .map(
       ({

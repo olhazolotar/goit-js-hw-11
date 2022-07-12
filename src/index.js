@@ -3,8 +3,12 @@ import './sass/index.scss';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { picturesMurkup } from './js/picturesMurkup';
 import PicturesApiServise from './js/api-servise';
-// import picturesTpl from './templates/pictures.hbs';
 import LoadMoreBtn from './js/load-more-btn';
+
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+let lightbox;
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
@@ -35,16 +39,22 @@ function onSearch(event) {
   }
 
   picturesApiServise.resetPage();
-  picturesApiServise.fetchPictures().then(hits => {
+  picturesApiServise.fetchPictures().then(({ hits, totalHits }) => {
+    Notify.success(`Hooray! We found ${totalHits} images.`);
     clearGalleryContainer();
     appendPicturesMurkup(hits);
+    picturesApiServise.incrementPage();
     loadMoreBtn.show();
+
+    return (lightbox = new SimpleLightbox('.gallery a', {
+      captionsData: 'alt',
+      captionDelay: '250ms',
+    }));
   });
 }
 
 function onLoadMore() {
   picturesApiServise.fetchPictures().then(appendPicturesMurkup);
-  console.log(hits);
 }
 
 function appendPicturesMurkup(hits) {
