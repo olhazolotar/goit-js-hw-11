@@ -1,10 +1,18 @@
-export function picturesMurkup(getImg) {
-    console.log();
-    
-    const murkup = getImg.data.hits.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
+export function picturesMurkup(hits) {
+  return hits
+    .map(
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => {
         return `<div class="gallery__item">
-            <a href="${largeImageURL}" class="gallery__link">
-                <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
+            <a href="${largeImageURL}" class="gallery__link link">
+                <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" width="370" height="294"/>
                 <div class="info">
                     <p class="info-item">
                     <b>Likes</b>${likes}
@@ -20,32 +28,8 @@ export function picturesMurkup(getImg) {
                     </p>
                 </div>
             </a>
-        </div>`
-    }).join();
-
-    console.log(murkup);
-    return murkup;
+        </div>`;
+      }
+    )
+    .join();
 }
-
-
-
-
-        
-        
-
-           
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
