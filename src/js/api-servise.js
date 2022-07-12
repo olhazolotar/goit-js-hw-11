@@ -6,7 +6,7 @@ const PER_PAGE = 40;
 export default class PicturesApiServise {
   constructor() {
     this.searchQuery = '';
-    this.page = 1;
+    this.page = '';
     this.totalHits = '';
     this.pageTotal = '';
   }
@@ -14,7 +14,7 @@ export default class PicturesApiServise {
   async fetchPictures() {
     try {
       const response = await axios.get(
-        `${BASE_URL}/api/?key=${KEY}&q=${this.searchQuery}&image_type=photo/&orientation=horizontal/&safesearch=true/&page=${this.page}/&per_page=40`
+        `${BASE_URL}/api/?key=${KEY}&q=${this.searchQuery}&image_type=photo/&orientation=horizontal/&safesearch=true/&page=${this.page}&per_page=40`
       );
       const data = await response.data;
 
@@ -36,7 +36,6 @@ export default class PicturesApiServise {
   }
 
   incrementPage() {
-    console.log(this.page);
     this.page += 1;
   }
 
