@@ -58,8 +58,6 @@ body {
     transition: transform var(--animation-duration) var(--timing-function);
 }
 
-
-
 .info {
     display: flex;
     flex-direction: column;
@@ -78,7 +76,6 @@ body {
 
 .nums {
     font-weight: 400;
-
 }
 
 .btn {
@@ -91,7 +88,9 @@ body {
     color: #ffffff;
     background-color: #36b7b7;
     width: 130px;
-    height: 40px;
+    height: 40px; 
+border: none;
+      
 }
 
 .load-more:hover {
