@@ -56,6 +56,7 @@ function onSearch(event) {
 function onLoadMore() {
   picturesApiServise.fetchPictures().then(({ hits, totalHits }) => {
     appendPicturesMurkup(hits);
+    picturesApiServise.incrementPage();
   });
 }
 
